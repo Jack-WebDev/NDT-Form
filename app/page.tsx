@@ -1,8 +1,7 @@
 
 "use client";
-import React, {useEffect} from "react";
+import React, {useEffect, FormEvent} from "react";
 import axios from "axios";
-import Image from "next/image";
 
 
 
@@ -15,7 +14,8 @@ export default function LoginPage() {
     const [loading, setLoading] = React.useState(false);
 
 
-    const onLogin = async () => {
+    const onSubmit = async (e:FormEvent<HTMLElement>) => {
+        e.preventDefault()
         try {
             setLoading(true);
             const response = await axios.post("/api/users", user);
@@ -197,7 +197,7 @@ property owner’s confirmation (affidavit) of change.</h2>
         />
 
         <button
-            onClick={onLogin}
+            onClick={onSubmit}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Submit</button>
     </div>
     )
