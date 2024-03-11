@@ -95,39 +95,7 @@ export default function FormPage() {
             placeholder="Enter Property Address"
         />
 
-
-<label htmlFor="reasonForChange">Reason For The Required Change</label>
-        <textarea
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="reasonForChange"
-            value={user.reasonForChange}
-            onChange={(e) => setUser({...user, reasonForChange: e.target.value})}
-            placeholder="Tell us your reason for change"
-        />
-
-
-        <label htmlFor="changeDescriptonDetails">Change Description Details</label>
-        <textarea 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="changeDescriptonDetails"
-            value={user.changeDescriptionDetails}
-            onChange={(e) => setUser({...user, changeDescriptionDetails: e.target.value})}
-            placeholder="Tell us the change descripton details"
-        />
-
-
-        <label htmlFor="desiredOutcome">Desired Outcome (by Property Owner or Requestor)</label>
-        <textarea
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="desiredOutcome"
-            value={user.desiredOutcome}
-            onChange={(e) => setUser({...user, desiredOutcome: e.target.value})}
-            placeholder="Tell us the desired outcome (by Property Owner or Requestor)"
-            
-        />
-
-
-        <label htmlFor="requestorID">Requestor ID</label>
+<label htmlFor="requestorID">Requestor's ID No.</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorID"
@@ -138,7 +106,7 @@ export default function FormPage() {
         />
 
 
-        <label htmlFor="requestorName">Requestor Name</label>
+        <label htmlFor="requestorName">Requestor's Name</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorName"
@@ -147,7 +115,7 @@ export default function FormPage() {
             onChange={(e) => setUser({...user, requestorName: e.target.value})}
             placeholder="Enter Requestor's Name"
         />
-        <label htmlFor="requestorJobTitle">Requestor Job Title (Role at the Property)</label>
+        <label htmlFor="requestorJobTitle">Requestor's Job Title (Role at the Property)</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorJobTitle"
@@ -158,8 +126,7 @@ export default function FormPage() {
         />
 
 
-
-        <h2>Tick the Change Type Required:</h2>
+<h2>Tick the Change Type Required:</h2>
         <div className="options">
 
         <div className="bank">
@@ -182,6 +149,44 @@ export default function FormPage() {
         <input type="checkbox" name="otherChange" id="otherChange" checked={user.otherChange} onChange={(e) => setUser({...user, otherChange: e.target.checked})}/>
         </div>
         </div>
+        <label htmlFor="changeDescriptonDetails">Change Description Details</label>
+        <textarea 
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+            id="changeDescriptonDetails"
+            value={user.changeDescriptionDetails}
+            onChange={(e) => setUser({...user, changeDescriptionDetails: e.target.value})}
+            placeholder="Tell us the change descripton details"
+        />
+
+
+
+<label htmlFor="reasonForChange">Reason For The Required Change</label>
+        <textarea
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+            id="reasonForChange"
+            value={user.reasonForChange}
+            onChange={(e) => setUser({...user, reasonForChange: e.target.value})}
+            placeholder="Tell us your reason for change"
+        />
+
+
+
+
+        <label htmlFor="desiredOutcome">Desired Outcome (by Property Owner or Requestor)</label>
+        <textarea
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+            id="desiredOutcome"
+            value={user.desiredOutcome}
+            onChange={(e) => setUser({...user, desiredOutcome: e.target.value})}
+            placeholder="Tell us the desired outcome (by Property Owner or Requestor)"
+            
+        />
+
+
+
+
+
+
 
 
 
