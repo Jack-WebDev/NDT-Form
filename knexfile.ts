@@ -9,9 +9,9 @@ module.exports = {
     connection: {
       host: "127.0.0.1",
       port: 5432,
-      database: "ndt",
+      database: "ndt-form",
       user: "admin",
-      password: "postgres",
+      password: "Jackwebdev@123",
     },
 
     pool: {

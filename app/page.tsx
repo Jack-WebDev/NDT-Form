@@ -1,41 +1,66 @@
 
 "use client";
 import React, {useEffect, FormEvent} from "react";
+import { z, ZodError, ZodIssue } from 'zod';
+
 import axios from "axios";
+import {useRouter} from "next/navigation"
 
+const userSchema = z.object({
+    propertyID: z.string().min(3, {message: "Property ID must have at least 3 characters"}),
+    propertyName: z.string().min(3, {message: "Property Name must have at least 3 characters"}),
+    propertyAddress: z.string().min(3, {message: "Property Address must have at least 3 characters"}),
+    requestorID: z.string().min(3, {message: "Requestor's ID must have at least 3 characters"}),
+    requestorName: z.string().min(3, {message: "Requestor's Name must have at least 3 characters"}),
+    requestorJobTitle: z.string().min(3, {message: "Requestor's Job Title must have at least 3 characters"}),
+    changeDescriptionDetails: z.string().min(3, {message: "Change Description Details must be given"}),
+    reasonForChange: z.string().min(3, {message: "Reason For Change must be given"}),
+    desiredOutcome: z.string().min(3, {message: "Desired Outcome must be given"}),
+    date: z.string().min(3, {message: "Date must be chosen"}),
+  });
 
+export default function FormPage() {
+    const router = useRouter()
 
-export default function LoginPage() {
+      
+
     const [user, setUser] = React.useState({
-      propertyID:"", propertyAddress: "",bankDetailsChange:false, propertyOwnershipChange:false, accountNameChange:false,otherChange:false, propertyName: "", changeRequired: "", changeDescriptonDetails: "", reasonForChange: "",desiredOutcome: "", requestorID: "", requestorName: "", requestorJobTitle: "",date: "", urgently: false,urgent:false,routine:false, uploads: "",
+      propertyID:"", propertyAddress: "",bankDetailsChange:false, propertyOwnershipChange:false, accountNameChange:false,otherChange:false, propertyName: "", changeDescriptionDetails: "", reasonForChange: "",desiredOutcome: "", requestorID: "", requestorName: "", requestorJobTitle: "",date: "", urgently: false,urgent:false,routine:false, uploads: "",
        
     })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
+    const [buttonDisabled, setButtonDisabled] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [errors, setErrors] = React.useState<ZodIssue[]>([]);
+
 
 
     const onSubmit = async (e:FormEvent<HTMLElement>) => {
         e.preventDefault()
         try {
+            const validatedData = userSchema.parse(user);
             setLoading(true);
-            const response = await axios.post("/api/users", user);
+            const response = await axios.post("/api/users", validatedData);
             console.log("Submission success", response.data);
+            router.push('/submission')
         } catch (error:any) {
-            console.log("Submission failed", error.message);
+            if (error instanceof ZodError) {
+                setErrors(error.errors);
+              }
         } finally{
         setLoading(false);
         }
     }
 
     useEffect(() => {
-        if(user.propertyID.length > 0 && user.propertyAddress.length > 0 && user.propertyName.length > 0 && user.changeRequired.length > 0 && user.changeDescriptonDetails.length > 0 && user.reasonForChange.length > 0 && user.desiredOutcome.length > 0 && user.requestorID.length > 0 && user.requestorName.length > 0 && user.requestorJobTitle.length > 0 && user.date.length > 0 && user.uploads.length > 0) {
-            setButtonDisabled(false);
-        } else{
+        if(user.propertyID.length < 0 && user.propertyAddress.length < 0 && user.propertyName.length < 0 && user.changeDescriptionDetails.length < 0 && user.reasonForChange.length < 0 && user.desiredOutcome.length < 0 && user.requestorID.length < 0 && user.requestorName.length < 0 && user.requestorJobTitle.length < 0 && user.date && user.uploads) {
             setButtonDisabled(true);
+        } else{
+            setButtonDisabled(false);
         }
     }, [user]);
 
     return (
+
     <div className="container flex flex-col items-center justify-center min-h-screen py-2">
         <h1 className="text-3xl mb-5">{loading ? "Processing" : "Change Request Form"}</h1>
         <hr />
@@ -71,22 +96,22 @@ export default function LoginPage() {
         />
 
 
-        <label htmlFor="changeRequired">Change Required</label>
-        <textarea 
+<label htmlFor="reasonForChange">Reason For The Required Change</label>
+        <textarea
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="changeRequired"
-            value={user.changeRequired}
-            onChange={(e) => setUser({...user, changeRequired: e.target.value})}
-            placeholder="Tell us the change you required"
+            id="reasonForChange"
+            value={user.reasonForChange}
+            onChange={(e) => setUser({...user, reasonForChange: e.target.value})}
+            placeholder="Tell us your reason for change"
         />
 
 
-        <label htmlFor="changeDescriptonDetails">Change Descripton Details</label>
+        <label htmlFor="changeDescriptonDetails">Change Description Details</label>
         <textarea 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="changeDescriptonDetails"
-            value={user.changeDescriptonDetails}
-            onChange={(e) => setUser({...user, changeDescriptonDetails: e.target.value})}
+            value={user.changeDescriptionDetails}
+            onChange={(e) => setUser({...user, changeDescriptionDetails: e.target.value})}
             placeholder="Tell us the change descripton details"
         />
 
@@ -98,6 +123,7 @@ export default function LoginPage() {
             value={user.desiredOutcome}
             onChange={(e) => setUser({...user, desiredOutcome: e.target.value})}
             placeholder="Tell us the desired outcome (by Property Owner or Requestor)"
+            
         />
 
 
@@ -130,6 +156,8 @@ export default function LoginPage() {
             onChange={(e) => setUser({...user, requestorJobTitle: e.target.value})}
             placeholder="Enter Requestor Job Title (Role at the Property)"
         />
+
+
 
         <h2>Tick the Change Type Required:</h2>
         <div className="options">
@@ -198,7 +226,14 @@ property owner’s confirmation (affidavit) of change.</h2>
 
         <button
             onClick={onSubmit}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Submit</button>
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600" disabled={buttonDisabled}>Submit</button>
+                  {errors && (
+        <ul>
+          {errors.map((error, index) => (
+            <li key={index}>{error.message}</li>
+          ))}
+        </ul>
+      )}
     </div>
     )
 

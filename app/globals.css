@@ -76,6 +76,15 @@ textarea {
   width: 80%;
 }
 
+
+.submission {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 15rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
   img {
     display: none;

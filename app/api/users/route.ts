@@ -4,21 +4,17 @@ import {db} from "../../models/dbConfig/connection"
 export async function POST(request: NextRequest){
     try {
         const reqBody = await request.json()
-        const {name, email} = reqBody;
-        // const {propertyID, propertyAddress, propertyName, changeRequired, changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads} = reqBody;
+        const {propertyID, propertyAddress, propertyName, changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads} = reqBody;
         console.log(reqBody);
 
-
-
-        // await db('ndt_form').insert({propertyID, propertyAddress, propertyName, changeRequired, changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads})
+        await db('ndt_form').insert({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads})
 
 
 
         const response = NextResponse.json({
             message: "Submission successful",
             success: true,
-            name: name,
-            email: email
+            reqBody
         })
 
         return response;
