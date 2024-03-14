@@ -95,7 +95,7 @@ export default function FormPage() {
             placeholder="Enter Property Address"
         />
 
-<label htmlFor="requestorID">Requestor's ID No.</label>
+<label htmlFor="requestorID">Requestor&apos;s ID No.</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorID"
@@ -106,7 +106,7 @@ export default function FormPage() {
         />
 
 
-        <label htmlFor="requestorName">Requestor's Name</label>
+        <label htmlFor="requestorName">Requestor&apos;s Name</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorName"
@@ -115,7 +115,7 @@ export default function FormPage() {
             onChange={(e) => setUser({...user, requestorName: e.target.value})}
             placeholder="Enter Requestor's Name"
         />
-        <label htmlFor="requestorJobTitle">Requestor's Job Title (Role at the Property)</label>
+        <label htmlFor="requestorJobTitle">Requestor&apos;s Job Title (Role at the Property)</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorJobTitle"
@@ -218,7 +218,7 @@ export default function FormPage() {
         <h2 className="mb-5">NOTE: For Property Ownership attach certified copy of new title deed, previous property owner written confirmation for reason of
 ownership change, and for bank changes, attach bank confirmation letter, title deed with holder name matching the account
 name and/or property owner confirmation (affidavit) of reason why account name is different. User system account name change,
-property owner’s confirmation (affidavit) of change.</h2>
+property owner&apos;s confirmation (affidavit) of change.</h2>
         <label htmlFor="uploads">Upload Files</label>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
