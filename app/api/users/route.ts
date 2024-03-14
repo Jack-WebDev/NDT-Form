@@ -7,7 +7,7 @@ export async function POST(request: NextRequest){
         const {propertyID, propertyAddress, propertyName, changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads} = reqBody;
         console.log(reqBody);
 
-        await db('ndt_form').insert({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads})
+        // await db('ndt_form').insert({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads})
 
 
 
