@@ -22,8 +22,6 @@ const userSchema = z.object({
 export default function FormPage() {
     const router = useRouter()
 
-      
-
     const [user, setUser] = React.useState({
       propertyID:"", propertyAddress: "",bankDetailsChange:false, propertyOwnershipChange:false, accountNameChange:false,otherChange:false, propertyName: "", changeDescriptionDetails: "", reasonForChange: "",desiredOutcome: "", requestorID: "", requestorName: "", requestorJobTitle: "",date: "", urgently: false,urgent:false,routine:false, uploads: "",
        
@@ -71,6 +69,7 @@ export default function FormPage() {
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="propertyID"
             type="text"
+            name="propertyID"
             value={user.propertyID}
             onChange={(e) => setUser({...user, propertyID: e.target.value})}
             placeholder="Enter Property ID"
@@ -81,6 +80,7 @@ export default function FormPage() {
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="propertyName"
             type="text"
+            name="propertyName"
             value={user.propertyName}
             onChange={(e) => setUser({...user, propertyName: e.target.value})}
             placeholder="Enter Property Name"
@@ -90,6 +90,7 @@ export default function FormPage() {
         <textarea 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="propertyAddress"
+            name="propertyAddress"
             value={user.propertyAddress}
             onChange={(e) => setUser({...user, propertyAddress: e.target.value})}
             placeholder="Enter Property Address"
@@ -99,6 +100,7 @@ export default function FormPage() {
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorID"
+            name="requestorID"
             type="text"
             value={user.requestorID}
             onChange={(e) => setUser({...user, requestorID: e.target.value})}
@@ -110,6 +112,7 @@ export default function FormPage() {
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorName"
+            name="requestorName"
             type="text"
             value={user.requestorName}
             onChange={(e) => setUser({...user, requestorName: e.target.value})}
@@ -119,6 +122,7 @@ export default function FormPage() {
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="requestorJobTitle"
+            name="requestorJobTitle"
             type="text"
             value={user.requestorJobTitle}
             onChange={(e) => setUser({...user, requestorJobTitle: e.target.value})}
@@ -164,6 +168,7 @@ export default function FormPage() {
         <textarea
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="reasonForChange"
+            name="reasonForChange"
             value={user.reasonForChange}
             onChange={(e) => setUser({...user, reasonForChange: e.target.value})}
             placeholder="Tell us your reason for change"
@@ -176,19 +181,12 @@ export default function FormPage() {
         <textarea
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="desiredOutcome"
+            name="desiredOutcome"
             value={user.desiredOutcome}
             onChange={(e) => setUser({...user, desiredOutcome: e.target.value})}
             placeholder="Tell us the desired outcome (by Property Owner or Requestor)"
             
         />
-
-
-
-
-
-
-
-
 
         <label htmlFor="date">Date</label>
         <input type="date" name="date" id="date" value={user.date} onChange={(e) => setUser({...user, date: e.target.value})}/>
@@ -223,6 +221,7 @@ property owner&apos;s confirmation (affidavit) of change.</h2>
         <input 
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
             id="uploads"
+            name="uploads"
             type="file"
             value={user.uploads}
             onChange={(e) => setUser({...user, uploads: e.target.value})}
