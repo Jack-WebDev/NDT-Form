@@ -22,7 +22,6 @@ export async function up(knex: Knex): Promise<void> {
         t.boolean('urgently').notNullable().defaultTo(false);
         t.boolean('urgent').notNullable().defaultTo(false);
         t.boolean('routine').notNullable().defaultTo(false);
-        t.string("uploads").nullable();
         t.timestamp("createdAt").defaultTo(knex.fn.now());
     })
 }
