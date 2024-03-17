@@ -1,5 +1,8 @@
+import knex from "knex";
 import { NextResponse } from "next/server";
-import { db } from "../../models/dbConfig/connection";
+// import { db } from "../../models/dbConfig/connection";
+const knexfile = require("../../../db/knexfile")
+const db = knex(knexfile.development)
 
 export async function POST(request: Request) {
   try {
@@ -17,11 +20,10 @@ export async function POST(request: Request) {
     const reasonForChange = formData.get("reasonForChange")
     const uploads = formData.get("uploads")
 
-    // await db('ndt_form').insert({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority})
+    await db('ndt_form').insert({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority, uploads})
 
-    // await db("uploads").insert({uploads})
     
-    return Response.json({uploads})
+    return Response.json({propertyID, propertyAddress, propertyName,changeDescriptonDetails, reasonForChange,desiredOutcome, requestorID, requestorName, requestorJobTitle,date, priority})
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

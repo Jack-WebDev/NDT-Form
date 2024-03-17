@@ -5,15 +5,14 @@
  */
 module.exports = {
   development: {
-    client: "postgresql",
+    client: "pg",
     connection: {
-      host: process.env.DB_HOST,
+      host: "127.0.0.1",
       port: 5432,
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
+      database: "ndt-form",
+      user: "postgres",
+      password: "Jackwebdev@123",
     },
-
     pool: {
       min: 2,
       max: 10,
@@ -21,10 +20,7 @@ module.exports = {
 
     migrations: {
       tableName: "knex_migrations",
-      directory: "./db/migrations",
-    },
-    seeds: {
-      directory: "./db/seeds",
+
     },
   },
 
